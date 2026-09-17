@@ -1,0 +1,31 @@
+# ISPRS Potsdam Dataset Configuration
+dataset:
+  name: "ISPRS Potsdam"
+  tile_size: 6000
+  num_classes: 6
+  color_list: [[1, 0, 0], [0, 0, 1], [1, 1, 1], [0, 1, 1], [0, 1, 0], [1, 1, 0]]
+  color_names: ["Background", "Building", "Roads", "Vegetation", "Tree", "Car"]
+  train_img_dir: "../train_dir/potsdam_aerials/"
+  train_mask_dir: "../train_dir/potsdam_masks/"
+  val_img_dir: "../validation_dir/potsdam_aerials/"
+  val_mask_dir: "../validation_dir/potsdam_masks/"
+
+model:
+  input_shape: [256, 256, 3]
+  filters: 32
+  n_block: 4
+  bottleneck_mode: "serial"
+  residual: true
+
+training:
+  batch_size: 50
+  epochs: 50
+  learning_rate: 0.0001
+  optimizer: "sgd"
+  loss: "sparse_categorical_crossentropy"
+  patch_size: 256
+  patch_stride: 256
+
+inference:
+  batch_size: 50
+  use_tta: true
