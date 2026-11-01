@@ -344,3 +344,10 @@ This project builds upon and extends the work from the [ISPRS Semantic Segmentat
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+## 📑 Technical report, benchmarks and interview deck (Nov 2026)
+
+* **[report/Technical_Report.pdf](report/Technical_Report.pdf)** – full LaTeX report: theory, pipelines, benchmarks on real CAMELYON16 slides and ISPRS Potsdam, literature comparison, edge-deployment analysis, interview Q&A, reproduction steps.
+* **[report/REPORT.md](report/REPORT.md)** – the same report in Markdown.
+* **[report/Interview_Slides.pptx](report/Interview_Slides.pptx)** (+ PDF) – 15-slide presentation.
+* Benchmarks: `benchmarks/`, raw numbers: `results/*.json`.
