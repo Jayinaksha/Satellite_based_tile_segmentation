@@ -49,6 +49,17 @@ convolution bottleneck**, and stitched back to a full-resolution map, with optio
 | 🎯 **Losses** | Jaccard distance, categorical focal loss for class imbalance |
 | 🚀 **tf.data pipeline** | On-the-fly multi-scale patch extraction and augmentation |
 
+
+## 🎬 Videos & website
+
+🌐 **Project website (GitHub Pages):** https://jayinaksha.github.io/Satellite_based_tile_segmentation/ — both explainer videos, all charts, results and downloads.
+
+| VAE-Triage explainer | High-resolution segmentation explainer |
+|---|---|
+| [![VAE-Triage video](docs/assets/poster_vae.jpg)](https://jayinaksha.github.io/Satellite_based_tile_segmentation/#videos) | [![Segmentation video](docs/assets/poster_sat.jpg)](https://jayinaksha.github.io/Satellite_based_tile_segmentation/#videos) |
+| [▶ Watch on the site](https://jayinaksha.github.io/Satellite_based_tile_segmentation/#videos) · [download MP4](docs/assets/VAE-Triage_explainer.mp4) | [▶ Watch on the site](https://jayinaksha.github.io/Satellite_based_tile_segmentation/#videos) · [download MP4](docs/assets/Satellite_segmentation_explainer.mp4) |
+
+
 ---
 
 ## 🏛️ Architecture
