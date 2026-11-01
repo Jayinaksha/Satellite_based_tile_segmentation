@@ -33,10 +33,11 @@ def get_tile_tta_pred(
     else:
         img = tile_path
         
-    patch_size = config.get('patch_size', 256)
-    patch_stride = config.get('patch_stride', 256)
-    batch_size = config.get('batch_size', 8)
-    num_classes = config.get('num_classes', 5)
+    flat = {**config.get('training', {}), **config.get('inference', {}), **config.get('dataset', {}), **config}
+    patch_size = flat.get('patch_size', 256)
+    patch_stride = flat.get('patch_stride', 256)
+    batch_size = flat.get('batch_size', 8)
+    num_classes = flat.get('num_classes', model.output_shape[-1])
     
     h, w, c = img.shape
     prob_sum = np.zeros((h, w, num_classes), dtype=np.float32)
