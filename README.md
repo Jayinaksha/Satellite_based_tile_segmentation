@@ -105,9 +105,13 @@ All methods scored on the same 12 fixed 1024×1024 test crops; mIoU / mF1 over 5
 literature). CPU only (4 vCPU), so the deep model is **time-boxed**, not trained to convergence.
 
 <!-- RESULTS_TABLE_START -->
-| Method | mIoU (5 cls) | mF1 | OA |
-|---|---|---|---|
-| ⏳ Re-running with corrected label mapping — table is filled in by `report/make_assets.py` | | | |
+| Method | mIoU (5 cls) | mF1 | OA | Imp. | Bldg | LowVeg | Tree | Car |
+|---|---|---|---|---|---|---|---|---|
+| K-means (k=6, unsupervised, Hungarian-mapped) | **19.8** | 32.5 | 36.1 | 24.8 | 10.9 | 25.6 | 25.0 | 12.6 |
+| GMM-Bayes (4 comps/class) | **43.1** | 60.0 | 60.0 | 51.6 | 41.7 | 46.6 | 38.7 | 36.8 |
+| GMM-Bayes + posterior smoothing | **48.5** | 65.2 | 64.8 | 55.1 | 45.2 | 52.1 | 45.7 | 44.5 |
+| Random Forest (RGB features) | **47.1** | 63.9 | 62.2 | 54.5 | 46.6 | 46.6 | 40.9 | 46.7 |
+| Random Forest (RGB + NIR/NDVI) | **50.4** | 66.8 | 65.9 | 62.2 | 51.9 | 48.1 | 44.0 | 45.9 |
 <!-- RESULTS_TABLE_END -->
 
 ![Potsdam](report/figures/chart_potsdam.png)
