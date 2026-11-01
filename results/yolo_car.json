@@ -1,0 +1,12 @@
+{
+  "model": "/home/user/data/potsdam/yolo_w/yolov8n-seg.pt",
+  "train_minutes": 20.41775724887848,
+  "train_images": 429,
+  "train_instances": 1488,
+  "mask_mAP50": 0.8507637021339056,
+  "mask_mAP50_95": 0.5336146239589693,
+  "box_mAP50": 0.8822781045873744,
+  "car_pixel_IoU_test_crops": 0.8472662318227813,
+  "car_pixel_F1_test_crops": 0.9173190276820524,
+  "ms_per_megapixel": 281.42486389476824
+}

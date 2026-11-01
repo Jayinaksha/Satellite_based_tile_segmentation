@@ -123,6 +123,10 @@ literature). CPU only (4 vCPU), so the deep model is **time-boxed**, not trained
 | GMM-Bayes + posterior smoothing | **48.5** | 65.2 | 64.8 | 55.1 | 45.2 | 52.1 | 45.7 | 44.5 |
 | Random Forest (RGB features) | **47.1** | 63.9 | 62.2 | 54.5 | 46.6 | 46.6 | 40.9 | 46.7 |
 | Random Forest (RGB + NIR/NDVI) | **50.4** | 66.8 | 65.9 | 62.2 | 51.9 | 48.1 | 44.0 | 45.9 |
+| Residual U-Net (repo), no TTA — 30 min CPU, 1752 it | **58.2** | 73.4 | 72.7 | 62.9 | 57.5 | 61.3 | 48.4 | 61.0 |
+| Residual U-Net (repo), 50% overlap stitching — 30 min CPU, 1752 it | **60.0** | 74.8 | 73.5 | 63.2 | 57.9 | 62.9 | 49.8 | 66.3 |
+| Residual U-Net (repo), 8x TTA — 30 min CPU, 1752 it | **61.3** | 75.8 | 74.2 | 64.4 | 60.2 | 63.0 | 49.7 | 69.0 |
+| YOLOv8n-seg (cars only, 20 min CPU) | – | – | – | – | – | – | – | 84.7 (mask mAP50 0.85) |
 <!-- RESULTS_TABLE_END -->
 
 ![Potsdam](report/figures/chart_potsdam.png)
