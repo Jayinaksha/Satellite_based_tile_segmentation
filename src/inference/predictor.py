@@ -30,9 +30,19 @@ def get_extract_pred_scatter(
     h, w, c = img.shape
     patches = []
     coords = []
-    
-    for i in range(0, max(1, h - patch_size + 1), patch_stride):
-        for j in range(0, max(1, w - patch_size + 1), patch_stride):
+
+    def _starts(n):
+        # BUGFIX: range(0, n - p + 1, stride) never reaches the border when
+        # (n - p) % stride != 0 (6000 px with 256 px patches leaves the last
+        # 112 rows/cols unpredicted -> silently argmax'ed to class 0).
+        # Add one extra patch aligned to the border.
+        s = list(range(0, max(1, n - patch_size + 1), patch_stride))
+        if n > patch_size and s[-1] != n - patch_size:
+            s.append(n - patch_size)
+        return s
+
+    for i in _starts(h):
+        for j in _starts(w):
             patches.append(img[i:i+patch_size, j:j+patch_size, :])
             coords.append([i, j])
             
@@ -82,10 +92,14 @@ def get_tile_prediction(
     else:
         img = tile_path
         
-    patch_size = config.get('patch_size', 256)
-    patch_stride = config.get('patch_stride', 256)
-    batch_size = config.get('batch_size', 8)
-    num_classes = config.get('num_classes', 5)
+    # BUGFIX: the YAML configs are nested (training:/dataset:), so the flat
+    # .get() calls silently fell back to defaults (num_classes=5 for a 6-class
+    # model). Accept both layouts.
+    flat = {**config.get('training', {}), **config.get('inference', {}), **config.get('dataset', {}), **config}
+    patch_size = flat.get('patch_size', 256)
+    patch_stride = flat.get('patch_stride', 256)
+    batch_size = flat.get('batch_size', 8)
+    num_classes = flat.get('num_classes', model.output_shape[-1])
     
     prob_map = get_extract_pred_scatter(
         img=img,

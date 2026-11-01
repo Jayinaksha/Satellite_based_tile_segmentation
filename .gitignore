@@ -37,3 +37,6 @@ Thumbs.db
 
 # Misc
 *.pdf
+__pycache__/
+*.h5
+*.npy
