@@ -2,7 +2,9 @@
 
 Data: HF mirror `aamante/potsdam` (official 512x512 crops of the 6000x6000
 true orthophotos, RGB+NIR, *eroded-boundary* ground truth "gt_no_boundary").
-Label ids on disk: 0 = eroded boundary (ignored), 1..6 = classes below.
+Label ids on disk (verified: value 6 forms 1-3 px rings around every object):
+  1 impervious, 2 building, 3 low vegetation, 4 tree, 5 car, 0 clutter,
+  6 = eroded boundary (ignored).
 
 Split (by *tile*, never by patch -> no spatial leakage):
   train : 2_10 3_11 4_12 5_10 6_8 6_11      (6 x 144 patches)
@@ -34,8 +36,9 @@ TEST_CROPS = [(y, x, 1024) for y in (500, 3500) for x in (500, 3500)]
 
 
 def _lab(gt):
-    out = gt.astype(np.int16) - 1
-    out[gt == 0] = IGNORE
+    out = gt.astype(np.int16) - 1          # 1..5 -> 0..4
+    out[gt == 0] = 5                       # clutter
+    out[gt == 6] = IGNORE                  # eroded boundary
     return out.astype(np.uint8)
 
 
